@@ -162,39 +162,31 @@ namespace wmp1_product_list
             if (products.Count == 0)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("No products to delete.\n");
+                Console.WriteLine("\nNo products to delete.\n");
                 return;
             }
 
-            // Display products with numbers for easy deletion
+            // Display products with numbers to help user
             Console.WriteLine("Current products:\n");
             for (int i = 0; i < products.Count; i++)
             {
                 Console.WriteLine($"  {i + 1}. {products[i]}");
             }
-            Console.Write("\nEnter product NUMBER to delete: ");
-            string input = Console.ReadLine().Trim();
 
-            Console.ForegroundColor = ConsoleColor.Red;
-            // Validate input with tryparse
-            if (!int.TryParse(input, out int choice))
+            Console.Write("\nEnter product to delete: ");
+            string input = Console.ReadLine().Trim().ToUpper();
+
+            if (products.Remove(input))
             {
-                Console.WriteLine("\nInvalid input. Please enter a number.\n");
-                return;
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"\n'{input}' removed successfully.\n");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nProduct not found.\n");
             }
 
-            // Validate choice is within range of products
-            if (choice < 1 || choice > products.Count)
-            {
-                Console.WriteLine($"\nInvalid number.\n");
-                return;
-            }
-
-            // Remove product and confirm deletion, - adjust for 0-based index
-            string removed = products[choice - 1];
-            products.RemoveAt(choice - 1);
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"\n'{removed}' removed successfully.\n");
             Console.ResetColor();
             Console.WriteLine("Press any key to continue...");
             Console.ReadLine();
@@ -219,10 +211,13 @@ namespace wmp1_product_list
             }
 
             // Display statistics
-            Console.WriteLine($"- Total products: {products.Count} \n");
+            Console.WriteLine($"- Total products: {products.Count}");
             Console.WriteLine($"- Highest product number: {productNumbers.Max()}");
             Console.WriteLine($"- Lowest product number: {productNumbers.Min()}");
-            Console.WriteLine($"- Average product number: {productNumbers.Average()} \n");
+            Console.WriteLine($"- Average product number: {productNumbers.Average():F1} \n"); // Formats to 1 decimal place
+
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadLine();
         }
 
 

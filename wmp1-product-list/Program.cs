@@ -46,7 +46,7 @@ while (true)
             return;
         default:
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Invalid option. Please try again.");
+            Console.WriteLine("\nInvalid option. Please try again.\n");
             break;
     }
 }

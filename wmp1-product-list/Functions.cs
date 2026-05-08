@@ -8,8 +8,7 @@ namespace wmp1_product_list
     {
         private static string IsValidFormat(string input)
         {
-            // FORMAT
-            // LETTERS - NUMBERS
+            // FORMAT: LETTERS-NUMBERS
 
             if (string.IsNullOrEmpty(input))
             {
@@ -24,6 +23,12 @@ namespace wmp1_product_list
             string[] parts = input.Split('-');
             string letters = parts[0];
             string numbers = parts[1];
+
+            // Stops users from entering more than 1 dash
+            if (parts.Length > 2)
+            {
+                return "Product must have exactly one dash (-). e.g. AB-300";
+            }
 
             if (string.IsNullOrEmpty(letters) || !letters.All(char.IsLetter))
             {
@@ -83,14 +88,10 @@ namespace wmp1_product_list
                 return;
             }
 
-            //Console.ResetColor();
-
             products.Add(data);
-            Console.WriteLine("");
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Product Added!");
+            Console.WriteLine("\nProduct Added!\n");
             Console.ResetColor();
-            Console.WriteLine("");
             Console.WriteLine("Press any key to continue...");
             Console.ReadLine();
         }
@@ -101,21 +102,18 @@ namespace wmp1_product_list
             if (products.Count > 0)
             {
                 products.Sort();
-                Console.WriteLine("Products:");
-                Console.WriteLine("");
+                Console.WriteLine("Products:\n");
                 foreach (var product in products)
                 {
                     Console.WriteLine("- " + product);
                 }
-                Console.WriteLine("");
-                Console.WriteLine("Press any key to continue...");
+                Console.WriteLine("\nPress any key to continue...");
                 Console.ReadLine();
             }
             else
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("No products available.");
-                Console.WriteLine("");
+                Console.WriteLine("No products available.\n");
                 Console.ResetColor();
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadLine();
@@ -142,15 +140,12 @@ namespace wmp1_product_list
             }
             else
             {
-                Console.WriteLine("");
-                Console.WriteLine("Results:");
-                Console.WriteLine("");
+                Console.WriteLine("\nResults:\n");
                 foreach (var result in results)
                 {
                     Console.WriteLine("- " + result);
                 }
-                Console.WriteLine("");
-                Console.WriteLine("Press any key to continue...");
+                Console.WriteLine("\nPress any key to continue...");
                 Console.ReadLine();
             }
         }
@@ -162,36 +157,31 @@ namespace wmp1_product_list
             if (products.Count == 0)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("No products to delete.");
-                Console.WriteLine("");
+                Console.WriteLine("No products to delete.\n");
                 return;
             }
 
             // Display products with numbers for easy deletion
-            Console.WriteLine("Current products:");
-            Console.WriteLine("");
+            Console.WriteLine("Current products:\n");
             for (int i = 0; i < products.Count; i++)
             {
                 Console.WriteLine($"  {i + 1}. {products[i]}");
             }
-            Console.WriteLine("");
-            Console.Write("Enter product NUMBER to delete: ");
+            Console.Write("\nEnter product NUMBER to delete: ");
             string input = Console.ReadLine().Trim();
 
             Console.ForegroundColor = ConsoleColor.Red;
             // Validate input with tryparse
             if (!int.TryParse(input, out int choice))
             {
-                Console.WriteLine("\nInvalid input. Please enter a number.");
-                Console.WriteLine("");
+                Console.WriteLine("\nInvalid input. Please enter a number.\n");
                 return;
             }
 
             // Validate choice is within range of products
             if (choice < 1 || choice > products.Count)
             {
-                Console.WriteLine($"\nInvalid number.");
-                Console.WriteLine("");
+                Console.WriteLine($"\nInvalid number.\n");
                 return;
             }
 
@@ -199,8 +189,7 @@ namespace wmp1_product_list
             string removed = products[choice - 1];
             products.RemoveAt(choice - 1);
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"\n'{removed}' removed successfully.");
-            Console.WriteLine("");
+            Console.WriteLine($"\n'{removed}' removed successfully.\n");
             Console.ResetColor();
             Console.WriteLine("Press any key to continue...");
             Console.ReadLine();
@@ -212,8 +201,7 @@ namespace wmp1_product_list
             if (products.Count == 0)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("No products available.");
-                Console.WriteLine("");
+                Console.WriteLine("No products available.\n");
                 return;
             }
 
@@ -226,12 +214,10 @@ namespace wmp1_product_list
             }
 
             // Display statistics
-            Console.WriteLine($"- Total products: {products.Count}");
-            Console.WriteLine("");
+            Console.WriteLine($"- Total products: {products.Count} \n");
             Console.WriteLine($"- Highest product number: {productNumbers.Max()}");
             Console.WriteLine($"- Lowest product number: {productNumbers.Min()}");
-            Console.WriteLine($"- Average product number: {productNumbers.Average()}");
-            Console.WriteLine("");
+            Console.WriteLine($"- Average product number: {productNumbers.Average()} \n");
         }
 
 

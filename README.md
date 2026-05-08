@@ -26,7 +26,7 @@ LETTERS-NUMBER
 - **Add Product** — validates format and prevents duplicates
 - **View Products** — displays all products sorted alphabetically
 - **Search Products** — search by name or number
-- **Delete Product** — shows a numbered list, delete by selecting a number
+- **Delete Product** — shows a product list, delete by writing name of product
 - **Statistics** — total, highest, lowest, and average product number
 - **Save to File** — saves the current list to `products.txt`
 

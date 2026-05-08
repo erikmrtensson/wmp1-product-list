@@ -1,6 +1,4 @@
-﻿
-using System.Text.RegularExpressions;
-using wmp1_product_list;
+﻿using wmp1_product_list;
 
 List<string> products = new List<string>();
 

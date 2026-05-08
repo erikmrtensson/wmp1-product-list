@@ -125,7 +125,14 @@ namespace wmp1_product_list
             string query = Console.ReadLine();
             query = query.Trim().ToUpper();
 
-            var results = products.Where(p => p.Contains(query)).ToList();
+            List<string> results = new List<string>();
+            foreach (string product in products)
+            {
+                if (product.Contains(query))
+                {
+                    results.Add(product);
+                }
+            }
 
             if (results.Count == 0)
             {

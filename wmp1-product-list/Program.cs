@@ -1,12 +1,4 @@
-﻿/*
- * 
- * TODO
- * TEST SO EVERYTHING WORKS
- * SEPERATE INTO CLASSES/CLASS
- * 
- * 
-*/
-
+﻿
 using System.Text.RegularExpressions;
 using wmp1_product_list;
 

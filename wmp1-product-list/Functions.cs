@@ -35,13 +35,11 @@ namespace wmp1_product_list
                 return "The left side must contain letters only.";
             }
 
-            if (string.IsNullOrEmpty(numbers) || !numbers.All(char.IsDigit))
+            if (!int.TryParse(numbers, out int number)) 
             {
                 return "The right side must contain numbers only.";
             }
 
-
-            int number = int.Parse(numbers);
             if (number < 200 || number > 500)
             {
                 return $"The numeric part must be between 200 and 500.";
